@@ -1,0 +1,113 @@
+﻿{
+  "version": "0.4.0",
+  "sections": [
+    {
+      "id": 1,
+      "name": "今日核心看板",
+      "trigger_fields": ["revenue", "dau", "pay_rate", "arppu"],
+      "source_key": "core",
+      "analysis_focus": [
+        "收入、DAU、付费率、ARPPU 的单日表现",
+        "D vs D-1、D vs 7日均值、D vs D-7 的方向一致性",
+        "定位最主要拉动项与拖累项"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "基础补充（基础数据其1）",
+      "trigger_fields": ["net_revenue", "total_installs", "next_day_retention", "active_payers"],
+      "source_key": "basic1",
+      "analysis_focus": [
+        "净收入、安装、留存与活跃付费用户补充判断",
+        "次留默认按T-1口径读取（避免D日未完整回流）",
+        "7留/30留若源表移除则不作为必填项，不强行补写",
+        "验证主看板信号是否一致",
+        "识别量增质降或量缩质升"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "机台参与与产出异常",
+      "trigger_fields": ["spin_times", "spin_users", "gold_sink"],
+      "source_key": "spin",
+      "supplementary_key": "top_machines",
+      "analysis_focus": [
+        "总spin量和参与人数的日变动",
+        "Top机台排名与集中度变化",
+        "金币消耗与参与规模是否背离"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "内购与生命周期结构",
+      "trigger_fields": ["iap_revenue", "iap_users", "iap_arppu", "active_users_by_lifecycle", "spin_per_user_by_lifecycle"],
+      "source_key": "iap",
+      "supplementary_key": "paying_users",
+      "analysis_focus": [
+        "内购收入、人数、ARPPU 三组对比",
+        "Top内购点位变化（vs D-1）与增减贡献",
+        "生命周期分层行为变化（活跃、spin、bet、钻石消耗）",
+        "生命周期必须拆 0-30天 / 30-120天 / 120天+ 三档，逐档写人数占比与D-1变化",
+        "章节结尾必须给产品周期判断（新客驱动/成长期驱动/成熟老客驱动）",
+        "识别收入变化是结构驱动还是客单价驱动"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "资源经济（双周期）",
+      "trigger_fields": ["consume_total", "grant_total", "net_consume"],
+      "source_key": "resource",
+      "analysis_focus": [
+        "资源消耗、发放、净消耗周期对比",
+        "高消耗场景Top变化",
+        "判断资源供需是否失衡"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "投放与回收",
+      "trigger_fields": ["promo_rev", "promo_cost", "promo_roi", "installs", "cpi"],
+      "source_key": "promo",
+      "analysis_focus": [
+        "投放默认按T-1口径读取（AF回传延迟）",
+        "推广成本与AF收入匹配度",
+        "ROI日波动及趋势（0成本标注T+1延迟）",
+        "CPI与安装量反向关系"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "广告变现监控（点位×类型）",
+      "trigger_fields": ["ads_total_views", "ads_by_point_top", "ads_by_type"],
+      "source_key": "ads",
+      "analysis_focus": [
+        "广告总曝光量日变化与趋势对比（D vs D-1 / 7日均值 / D-7）",
+        "按点位输出Top贡献及增减项（vs D-1）",
+        "按广告类型输出结构占比与变化（reward/inter/banner等）",
+        "识别单点位或单类型过度集中导致的波动风险"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "大R风险快照",
+      "trigger_fields": ["at_risk_users_20_30d", "high_risk_users_27_30d", "concentrated_features"],
+      "source_key": "big_r",
+      "analysis_focus": [
+        "识别20-30天流失尾部用户规模",
+        "提取风险用户的国家/R层/最后付费点位等集中特征",
+        "若出现集中性特征，给出可执行的分群留存动作"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "风险清单与明日动作",
+      "trigger_fields": [],
+      "source_key": null,
+      "analysis_focus": [
+        "汇总Sections 1-8中的超阈值与背离信号",
+        "列出Top 3风险并排序",
+        "每个风险对应1条可执行动作"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+name: 飞书推送通知
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    types: [opened, closed, reopened]
+
+jobs:
+  notify:
+    uses: MOYAI1234/.github/.github/workflows/notify-feishu.yml@main
+    with:
+      event_name: ${{ github.event_name }}
+      repo_name: ${{ github.repository }}
+      actor: ${{ github.actor }}
+      ref_name: ${{ github.ref_name }}
+      commit_message: ${{ github.event.head_commit.message }}
+      commit_url: ${{ github.event.head_commit.url }}
+      pr_title: ${{ github.event.pull_request.title }}
+      pr_url: ${{ github.event.pull_request.html_url }}
+      pr_action: ${{ github.event.action }}
+      pr_merged: ${{ toJson(github.event.pull_request.merged) }}
+      pr_base: ${{ github.event.pull_request.base.ref }}
+    secrets: inherit

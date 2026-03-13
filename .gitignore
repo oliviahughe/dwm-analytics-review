@@ -1,0 +1,22 @@
+# Runtime artifacts - do not commit
+wip_report.md
+wip_daily_report.md
+extracted_data.json
+extracted_data_test.json
+daily_snapshot.json
+big_r_data.json
+big_r_android.json
+resource_data.json
+
+# Data directories (contain raw CSV exports)
+data/
+snapshots/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db

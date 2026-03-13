@@ -1,0 +1,291 @@
+﻿{
+  "version": "0.4.0",
+  "date_windows": {
+    "target": "D",
+    "prev_day": "D-1",
+    "last_7d_avg": "D-7..D-1",
+    "last_week_same_day": "D-7",
+    "retention_anchor": "D-1",
+    "promo_anchor": "D-1"
+  },
+  "coverage": {
+    "expected_csv_keys": [
+      "basic_data_1",
+      "basic_data_2",
+      "slot_spin_overview",
+      "paying_user_summary",
+      "paying_user_resource",
+      "recharge_price_summary",
+      "promotion_data",
+      "big_r_detail",
+      "ad_board_data"
+    ],
+    "strict_mode": "--strict 时仅 required=true 的CSV出现 missing/parse_error 才失败；ad_board_data 在迁移期可选"
+  },
+  "metrics": [
+    {
+      "name": "revenue",
+      "display_name": "总收入",
+      "section": "core",
+      "source_csv": "basic_data_2",
+      "source_column": "总收入($)",
+      "format": "currency",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "dau",
+      "display_name": "DAU",
+      "section": "core",
+      "source_csv": "basic_data_2",
+      "source_column": "DAU",
+      "format": "integer",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "pay_rate",
+      "display_name": "付费率",
+      "section": "core",
+      "source_csv": "basic_data_2",
+      "source_column": "付费率(%)",
+      "format": "percent",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "arppu",
+      "display_name": "内购ARPPU",
+      "section": "core",
+      "source_csv": "basic_data_2",
+      "source_column": "内购ARPPU($)",
+      "format": "currency",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "net_revenue",
+      "display_name": "净收入",
+      "section": "basic1",
+      "source_csv": "basic_data_1",
+      "source_column": "净收入",
+      "format": "currency",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "total_installs",
+      "display_name": "总安装数",
+      "section": "basic1",
+      "source_csv": "basic_data_1",
+      "source_column": "总安装数",
+      "format": "integer",
+      "aggregation": "single_row"
+    },
+    {
+      "name": "next_day_retention",
+      "display_name": "次留",
+      "section": "basic1",
+      "source_csv": "basic_data_1",
+      "source_column": "次留",
+      "format": "percent",
+      "aggregation": "single_row_t_minus_1",
+      "note": "日报场景次留默认读取T-1，避免D日次留不完整"
+    },
+    {
+      "name": "day7_retention",
+      "display_name": "7留",
+      "section": "basic1",
+      "source_csv": "basic_data_1",
+      "source_column": "7留",
+      "format": "percent",
+      "aggregation": "single_row",
+      "note": "若源表已移除该字段则跳过，不作为日报必填项"
+    },
+    {
+      "name": "spin_times",
+      "display_name": "总spin次数",
+      "section": "spin",
+      "source_csv": "slot_spin_overview",
+      "source_column": "spin次数",
+      "format": "integer",
+      "aggregation": "sum_by_date"
+    },
+    {
+      "name": "spin_users",
+      "display_name": "spin人数",
+      "section": "spin",
+      "source_csv": "slot_spin_overview",
+      "source_column": "spin人数",
+      "format": "integer",
+      "aggregation": "machine_level_only",
+      "note": "按机台分组字段，存在用户重复，不可跨机台累加为全局人数"
+    },
+    {
+      "name": "gold_sink",
+      "display_name": "金币消耗",
+      "section": "spin",
+      "source_csv": "slot_spin_overview",
+      "source_column": "消耗金币",
+      "format": "integer",
+      "aggregation": "sum_by_date"
+    },
+    {
+      "name": "iap_revenue",
+      "display_name": "内购收入",
+      "section": "iap",
+      "source_csv": "recharge_price_summary",
+      "source_column": "付费总金额",
+      "format": "currency",
+      "aggregation": "sum_by_date"
+    },
+    {
+      "name": "iap_users",
+      "display_name": "内购用户数",
+      "section": "iap",
+      "source_csv": "recharge_price_summary",
+      "source_column": "付费总用户数",
+      "format": "integer",
+      "aggregation": "sum_by_date"
+    },
+    {
+      "name": "iap_arppu",
+      "display_name": "内购ARPPU",
+      "section": "iap",
+      "source_csv": "recharge_price_summary",
+      "source_column": "derived",
+      "format": "currency",
+      "aggregation": "derived"
+    },
+    {
+      "name": "active_users_by_lifecycle",
+      "display_name": "生命周期活跃付费用户",
+      "section": "paying_users",
+      "source_csv": "paying_user_summary",
+      "source_column": "每日付费用户数",
+      "format": "integer",
+      "aggregation": "sum_across_tiers"
+    },
+    {
+      "name": "active_user_ratio_by_lifecycle",
+      "display_name": "生命周期付费用户占比",
+      "section": "paying_users",
+      "source_csv": "paying_user_summary",
+      "source_column": "每日付费用户数占比",
+      "format": "percent",
+      "aggregation": "mean_across_tiers"
+    },
+    {
+      "name": "spin_per_user_by_lifecycle",
+      "display_name": "生命周期人均spin",
+      "section": "paying_users",
+      "source_csv": "paying_user_summary",
+      "source_column": "spin.用户均次数",
+      "format": "number",
+      "aggregation": "mean_across_tiers"
+    },
+    {
+      "name": "promo_rev",
+      "display_name": "推广收入(AF)",
+      "section": "promo",
+      "source_csv": "promotion_data",
+      "source_column": "总收入",
+      "format": "currency",
+      "aggregation": "transposed_row_t_minus_1",
+      "note": "投放回收默认读取T-1，D日值放在promo_raw_d供参考"
+    },
+    {
+      "name": "promo_cost",
+      "display_name": "推广成本(AF)",
+      "section": "promo",
+      "source_csv": "promotion_data",
+      "source_column": "推广成本",
+      "format": "currency",
+      "aggregation": "transposed_row_t_minus_1"
+    },
+    {
+      "name": "promo_roi",
+      "display_name": "ROI",
+      "section": "promo",
+      "source_csv": "promotion_data",
+      "source_column": "ROI",
+      "format": "ratio",
+      "aggregation": "transposed_row_t_minus_1"
+    },
+    {
+      "name": "iap_points_top_changes",
+      "display_name": "内购点位变化",
+      "section": "iap",
+      "source_csv": "recharge_price_summary",
+      "source_column": "项目位置",
+      "format": "table",
+      "aggregation": "top_points_vs_d1"
+    },
+    {
+      "name": "resource_net_consume",
+      "display_name": "资源净消耗",
+      "section": "resource",
+      "source_csv": "paying_user_resource",
+      "source_column": "derived",
+      "format": "integer",
+      "aggregation": "period_compare"
+    },
+    {
+      "name": "big_r_active_30d_rate",
+      "display_name": "大R近30天活跃率",
+      "section": "big_r",
+      "source_csv": "big_r_detail",
+      "source_column": "derived",
+      "format": "percent",
+      "aggregation": "snapshot"
+    },
+    {
+      "name": "big_r_at_risk_users_20_30d",
+      "display_name": "大R流失倾向用户数(20-30天)",
+      "section": "big_r",
+      "source_csv": "big_r_detail",
+      "source_column": "流失天数",
+      "format": "integer",
+      "aggregation": "count_filter_20_30"
+    },
+    {
+      "name": "big_r_concentrated_features",
+      "display_name": "大R风险集中特征",
+      "section": "big_r",
+      "source_csv": "big_r_detail",
+      "source_column": "country/r_level/最后付费点位",
+      "format": "list",
+      "aggregation": "feature_concentration"
+    },
+    {
+      "name": "ads_total_views",
+      "display_name": "广告总曝光",
+      "section": "ads",
+      "source_csv": "ad_board_data",
+      "source_column": "adView.总次数",
+      "format": "integer",
+      "aggregation": "sum_by_point"
+    },
+    {
+      "name": "ads_by_point_top",
+      "display_name": "广告点位Top变化",
+      "section": "ads",
+      "source_csv": "ad_board_data",
+      "source_column": "adpos_name_adpos_adpos",
+      "format": "table",
+      "aggregation": "top_points_vs_d1"
+    },
+    {
+      "name": "ads_by_type",
+      "display_name": "广告类型结构",
+      "section": "ads",
+      "source_csv": "ad_board_data",
+      "source_column": "inferred_type",
+      "format": "table",
+      "aggregation": "group_by_type"
+    }
+  ],
+  "comparison_rules": {
+    "pct_change_formula": "(current - baseline) / baseline",
+    "default_alert_threshold_pct": 0.15,
+    "resource_compare_note": "资源经济使用双周期口径，不使用D/D-1口径",
+    "big_r_compare_note": "大R表通常为30日活跃快照，重点看20-30天流失尾部和集中特征，不只看active_30d_rate",
+    "freshness_note": "次留与投放回收默认采用T-1口径；D日原值仅做参考",
+    "lifecycle_breakdown_note": "生命周期章节必须拆分 0-30天 / 30-120天 / 120天+，并输出产品周期判断"
+  }
+}
