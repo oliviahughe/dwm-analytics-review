@@ -1,0 +1,66 @@
+{
+  "_comment": "CSV 文件名映射配置。看板搭建完成后，将实际文件名填入 filename 字段。当前以2月实际文件名作为参考示例。",
+  "_comment_roi": "回收数据（Day7/Day30 ROI，进阶数据章节9/10）来自 Adjust，不在看板 ZIP 内，由用户每次手动拉取后粘贴提供。",
+  "products": {
+    "WOOHOO_CASINO": {
+      "dashboard_url": "https://ta.triwingames.com/#/panel/panel/112_9835_0",
+      "_comment_url": "WOOHOO CASINO 月报看板 URL",
+      "csv_files": {
+        "paying_user_summary": {
+          "filename": "付费用户总结数据_按生命周期分组",
+          "description": "付费用户生命周期、分层、spin/bet/钻石消耗数据",
+          "section_ids": ["slot_paying_users"],
+          "example": "付费用户总结数据_按生命周期分组_全量数据_20260101_20260301.csv"
+        },
+        "slot_spin_overview": {
+          "filename": "spin数据总览",
+          "description": "各机台每日 spin 次数、spin 人数、消耗金币",
+          "section_ids": ["slot_participation"],
+          "example": "spin数据总览  (1)_全量数据_20260101_20260301.csv"
+        },
+        "paying_user_resource": {
+          "filename": "付费用户资源监控",
+          "description": "钻石消耗场景、钻石发放渠道明细（原 bingo feature 用户资源监控）",
+          "section_ids": ["diamond_economy"],
+          "example": "付费用户资源监控_全量数据_20260131_20260301_日期对比.csv"
+        },
+        "recharge_price_summary": {
+          "filename": "内购数据_分点位_分付费用户标签",
+          "description": "各付费点位的收入、次数、用户数、ARPPU，按消费层级细分",
+          "section_ids": ["iap_monitor"],
+          "example": "内购数据_分点位_分付费用户标签_全量数据_20260101_20260301.csv"
+        },
+        "basic_data_1": {
+          "filename": "基础数据(其1)",
+          "description": "净收入、总安装数、DNU月均值、次留、7留等补充大盘指标（去分成口径），由 parse_basic.py --file2 参数读取，结果作为 supplement/supplement_prev/supplement_change 合并入基础大盘 JSON",
+          "section_ids": ["basic_overview_android", "basic_overview_ios"],
+          "example": "基础数据(其1)_全量数据_20260101_20260301.csv",
+          "_note": "单独下载时文件名格式可能为 基础数据(其1)_20260101-20260228.csv（日期分隔符为-而非_）"
+        },
+        "basic_data_2": {
+          "filename": "基础数据其二",
+          "description": "主看板基础大盘指标：DAU、DNU、MAU、内购ARPU/ARPPU/付费率、广告ARPU、推广成本、月度盈利等",
+          "section_ids": ["basic_overview_android", "basic_overview_ios"],
+          "example": "基础数据其二_20260302.csv"
+        },
+        "promotion_data": {
+          "filename": "推广数据监控",
+          "description": "推广成本、安装量、CPI、ROI、广告效率（eCPM/CTR等）",
+          "section_ids": ["promotion_data"],
+          "example": "推广数据监控_全量数据_20260101_20260301.csv"
+        },
+        "big_r_detail": {
+          "filename": "大R用户明细",
+          "description": "大R用户历史累计付费、注册时间、登录/付费天数、流失状态。由 parse_big_r.py 解析，生成第9章「大R用户明细」（Top N 排行 + 本月活跃/付费/流失状态 + 关键异动标注）",
+          "section_ids": ["iap_monitor"],
+          "example": "大R用户明细_20260302.csv",
+          "_note": "该文件名格式为 大R用户明细_YYYYMMDD.csv，日期为下载日期而非数据周期"
+        }
+      }
+    },
+    "_comment_multi_product": "每个产品单独一份月报。GRAND RICHES CASINO 等其他产品的配置在其独立的 csv_mapping 文件中管理。"
+  },
+  "data_dir": "D:/claudecode/monthly_report/data/",
+  "reports_dir": "D:/claudecode/monthly_report/reports/",
+  "wip_report": "D:/claudecode/monthly_report/skill/wip_report.md"
+}

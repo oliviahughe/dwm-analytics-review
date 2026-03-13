@@ -1,0 +1,264 @@
+{
+  "sections": [
+    {
+      "id": "basic_overview_ios",
+      "order": 1,
+      "name": "基础大盘 iOS",
+      "type": "table_paste",
+      "platform": "ios",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["DAU", "DNU", "次留", "内购arpu", "内购arppu", "付费率", "广告arpu", "推广成本", "月度盈利"],
+      "csv_key": null,
+      "key_metrics": [
+        "DAU及周环比",
+        "DNU及周环比",
+        "周度盈利及周环比",
+        "去分成总收入及周环比",
+        "内购ARPU/ARPPU/付费率",
+        "次留/7日留",
+        "推广成本变化",
+        "广告ARPU"
+      ],
+      "confirm_questions": [
+        "30日留存是否正常缺失",
+        "盈利数字是否直接用表格值",
+        "推广成本变化是否为主动调整"
+      ],
+      "analysis_focus": "盈利驱动因素（成本压缩 vs 收入提升）> 量级变化；ARPU/ARPPU提升归因；留存质量判断",
+      "format": "3-4 bullet points",
+      "threshold": 0.20
+    },
+    {
+      "id": "basic_overview_android",
+      "order": 2,
+      "name": "基础大盘 安卓",
+      "type": "table_paste",
+      "platform": "android",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["DAU", "DNU", "次留", "内购arpu", "内购arppu", "付费率", "广告arpu", "推广成本", "月度盈利"],
+      "csv_key": null,
+      "key_metrics": [
+        "DAU及周环比",
+        "DNU及周环比",
+        "自然安装量及占比变化",
+        "周度盈利及周环比",
+        "内购ARPU/ARPPU/付费率",
+        "次留/7日留",
+        "推广成本变化"
+      ],
+      "confirm_questions": [
+        "30日留存是否正常缺失",
+        "自然量提升是否有已知原因需写入",
+        "盈利数字是否直接用表格值"
+      ],
+      "analysis_focus": "盈利驱动因素（成本压缩 vs 收入提升）> 量级变化；自然量变化需单独说明来源；ARPU/ARPPU提升归因",
+      "format": "3-4 bullet points",
+      "threshold": 0.20
+    },
+    {
+      "id": "version_release",
+      "order": 3,
+      "name": "版本发布节奏",
+      "type": "manual",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": [],
+      "csv_key": null,
+      "key_metrics": ["版本号", "发布日期", "主要内容"],
+      "confirm_questions": [],
+      "analysis_focus": "列出本周版本号、发布日期、主要更新内容（活动/机台），附简短总结",
+      "format": "table + bullet",
+      "threshold": 0.20,
+      "skip_text": "本周无版本更新。"
+    },
+    {
+      "id": "slot_paying_users",
+      "order": 4,
+      "name": "机台轮换效果 - 整体付费用户大盘",
+      "type": "csv",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["注册天数", "日均活跃付费用户", "人均spin次数", "下注中位数", "钻石消耗"],
+      "csv_key": "paying_user_summary",
+      "key_metrics": [
+        "日均活跃付费用户数及周环比",
+        "付费用户占比",
+        "人均spin次数及周环比",
+        "下注中位数及周环比",
+        "钻石消耗人均及周环比",
+        "生命周期分层结构变化"
+      ],
+      "confirm_questions": [
+        "是否需要按生命周期对齐视角分析",
+        "是否需要按付费层级（小R/中R/大R）拆分"
+      ],
+      "analysis_focus": "生命周期对齐后的留存结构 > 整体均值变化；付费层级分化 > 总量变化；重点标注30-90天付费用户周环比异动",
+      "format": "bullet with sub-bullets per R-tier",
+      "threshold": 0.20
+    },
+    {
+      "id": "slot_participation",
+      "order": 5,
+      "name": "机台轮换效果 - 机台参与率",
+      "type": "csv",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["机台名称", "spin次数", "spin人数", "人均spin次数", "消耗金币"],
+      "csv_key": "slot_spin_overview",
+      "key_metrics": [
+        "Top5机台名称及spin量",
+        "上周Top5机台的留存/跌出情况",
+        "新上线机台的爬坡曲线",
+        "逆势增长机台"
+      ],
+      "confirm_questions": [
+        "新上线机台是否需要分析每日趋势"
+      ],
+      "analysis_focus": "Top5格局周环比变化 > 绝对spin量；新机台延续性分析（峰值→平台期）；逆势增长机台标注",
+      "format": "bullet, new machines get dedicated sub-section",
+      "threshold": 0.20
+    },
+    {
+      "id": "diamond_economy",
+      "order": 6,
+      "name": "机台轮换效果 - 钻石消耗",
+      "type": "csv",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["钻石消耗", "钻石发放", "MiniGame", "doubleFreeGame", "ReSpinFreeGame"],
+      "csv_key": "bingo_feature_resource",
+      "key_metrics": [
+        "消耗端Top场景及周环比",
+        "发放端Top渠道及周环比",
+        "新增消耗场景",
+        "消耗中位数变化"
+      ],
+      "confirm_questions": [
+        "消耗/发放大幅变化是否有活动周期原因"
+      ],
+      "analysis_focus": "消耗端和发放端分别小结；重点标注单周逆转（上周大涨本周大跌）的场景；循环健康度判断",
+      "format": "消耗端 + 发放端 两段，各用 bullet",
+      "threshold": 0.20
+    },
+    {
+      "id": "iap_monitor",
+      "order": 7,
+      "name": "付费礼包监控",
+      "type": "csv",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["项目位置", "付费总金额", "付费总次数", "付费总用户数", "ARPPU"],
+      "csv_key": "recharge_price_summary",
+      "key_metrics": [
+        "总收入及周环比",
+        "付费次数及周环比",
+        "大R层级（500+）收入占比及ARPPU变化",
+        "Top3点位及各自变化",
+        "显著增量/跌幅点位"
+      ],
+      "confirm_questions": [
+        "收入增幅是否已有准确数字",
+        "大R提升是否有特定用户贡献需说明"
+      ],
+      "analysis_focus": "点位结构周环比变化 > 绝对金额；R段贡献归因；异常点位用⚠️标注",
+      "format": "3 numbered points",
+      "threshold": 0.20
+    },
+    {
+      "id": "promotion_data",
+      "order": 8,
+      "name": "推广数据监控",
+      "type": "csv",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["推广成本", "安装次数", "CPI", "ROI", "eCPM", "CTR"],
+      "csv_key": "promotion_data",
+      "key_metrics": [
+        "推广成本总额及周环比",
+        "安装次数及周环比",
+        "CPI及周环比",
+        "AF总收入及ROI",
+        "广告展示/点击/eCPM/CTR",
+        "观看广告用户数及周环比"
+      ],
+      "confirm_questions": [
+        "推广成本变化是否为主动调整",
+        "CPI异常波动是否有渠道调整原因"
+      ],
+      "analysis_focus": "推广效率核心指标（CPI/ROI/安装量）周环比变化趋势；成本结构是否健康；广告变现效率（eCPM/CTR）",
+      "format": "3-4 bullet points",
+      "threshold": 0.20
+    },
+    {
+      "id": "advanced_ios",
+      "order": 9,
+      "name": "进阶数据 iOS",
+      "type": "table_paste",
+      "platform": "ios",
+      "_comment_source": "spin/bet/钻石消耗数据来自看板 CSV；Day7/Day30 ROI 来自 Adjust，用户手动提供",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["人均spin次数", "每日活跃付费用户", "历史付费用户", "付费用户bet中位数", "付费用户日均消耗钻石", "day 7 ROI", "day 30 ROI"],
+      "csv_key": null,
+      "key_metrics": [
+        "人均spin及周环比",
+        "每日活跃付费用户及周环比",
+        "历史付费用户及周环比",
+        "活跃付费用户占比",
+        "bet中位数及周环比",
+        "钻石日均消耗及周环比",
+        "Day7 ROI及周环比",
+        "Day30 ROI（若已出）"
+      ],
+      "confirm_questions": [
+        "Day30/总回收是否未到期",
+        "消耗变化是否有活动周期原因"
+      ],
+      "analysis_focus": "付费深度指标联动（spin/bet/钻石）；回收趋势（近6周走势）；历史付费用户基盘变化",
+      "format": "3 numbered points",
+      "threshold": 0.20
+    },
+    {
+      "id": "advanced_android",
+      "order": 10,
+      "name": "进阶数据 安卓",
+      "type": "table_paste",
+      "platform": "android",
+      "_comment_source": "spin/bet/钻石消耗数据来自看板 CSV；Day7/Day30 ROI 来自 Adjust，用户手动提供",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": ["人均spin次数", "每日活跃付费用户", "历史付费用户", "付费用户bet中位数", "付费用户日均消耗钻石", "崩溃率", "ANR", "day 7 ROI"],
+      "csv_key": null,
+      "key_metrics": [
+        "人均spin及周环比",
+        "每日活跃付费用户及周环比",
+        "历史付费用户及周环比",
+        "bet中位数及周环比",
+        "钻石日均消耗及周环比",
+        "崩溃率/ANR变化",
+        "Day7 ROI及周环比"
+      ],
+      "confirm_questions": [
+        "崩溃率上升是否需要⚠️标注",
+        "Day30/总回收是否未到期"
+      ],
+      "analysis_focus": "付费深度指标联动（spin/bet/钻石）；历史付费用户基盘变化；回收趋势及改善归因",
+      "format": "3 numbered points",
+      "threshold": 0.20
+    },
+    {
+      "id": "operation_strategy",
+      "order": 11,
+      "name": "运营策略调整",
+      "type": "manual",
+      "platform": "all",
+      "products": ["WOOHOO_CASINO"],
+      "trigger_fields": [],
+      "csv_key": null,
+      "key_metrics": ["本周执行的运营动作", "下周计划"],
+      "confirm_questions": [],
+      "analysis_focus": "本周运营动作列举；下周方向预告",
+      "format": "prose paragraphs",
+      "threshold": 0.20,
+      "skip_text": "本周无运营策略调整。"
+    }
+  ]
+}
